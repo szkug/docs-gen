@@ -1,0 +1,186 @@
+package utils.docs.plugins
+
+import io.ktor.http.*
+import io.ktor.server.application.*
+import io.ktor.server.http.content.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
+import kotlinx.css.*
+import kotlinx.css.properties.TextDecoration
+import kotlinx.css.properties.lh
+import java.io.File
+
+suspend inline fun ApplicationCall.respondCss(builder: CssBuilder.() -> Unit) {
+    this.respondText(CssBuilder().apply(builder).toString(), ContentType.Text.CSS)
+}
+
+fun Application.configureStaticFileRoute(root: File, dir: String) {
+    routing {
+
+        staticResources("", "")
+        staticFiles(dir, File(root, dir))
+
+        get(StylePath) {
+            call.respondCss {
+                stylesCss()
+            }
+        }
+    }
+}
+
+private fun CssBuilder.stylesCss() {
+    fontFace {
+        fontFamily = CssStyles.fontName
+        src = """url("JetBrainsMono-Thin.woff2") format("woff")"""
+    }
+    rule("*") {
+        fontFamily = CssStyles.fontFamily
+    }
+    html {
+        height = 100.pct
+        width = 100.pct
+    }
+    body {
+        backgroundColor = CssStyles.background
+        margin = Margin(0.px)
+        color = CssStyles.defaultTextColor
+        height = 100.pct
+        width = 100.pct
+    }
+
+    a {
+        borderBottom = Border(width = 1.px, style = BorderStyle.solid, color = CssStyles.borderColor)
+        cursor = Cursor.pointer
+        color = CssStyles.linkColor
+        textDecoration = TextDecoration.none
+
+        hover {
+            borderBottomColor = Color.unset
+        }
+
+        after {
+            marginLeft = 4.px
+            content = QuotedString("\\2197")
+        }
+    }
+    p {
+        marginTop = CssStyles.lineTop
+        fontSize = CssStyles.textSize
+        lineHeight = (CssStyles.textSize * CssStyles.lineHeightRadio).lh
+    }
+    li {
+        marginTop = CssStyles.listTop
+        fontSize = CssStyles.textSize
+        lineHeight = (CssStyles.textSize * CssStyles.lineHeightRadio).lh
+    }
+    rule("h1, h2, h3, h4, h5, h6") {
+        marginTop = CssStyles.titleTop
+        color = CssStyles.strongTextColor
+    }
+    code {
+        backgroundColor = CssStyles.blockBackground
+        padding = CssStyles.codeLinePadding
+        margin = CssStyles.codeLineMargin
+        fontSize = CssStyles.codeTextSize
+        lineHeight = (CssStyles.codeTextSize * CssStyles.lineHeightRadio).lh
+        borderRadius = CssStyles.codeLineRadius
+    }
+    pre {
+        marginTop = CssStyles.lineTop
+        background = CssStyles.blockBackground.value.plus(" !important")
+        padding = CssStyles.blockPadding
+        borderRadius = CssStyles.blockRadius
+
+        children(code.tagName) {
+            padding = Padding(0.px)
+            margin = Margin(0.px)
+            backgroundColor = Color.transparent
+        }
+    }
+
+    rule(".code-toolbar .toolbar .toolbar-item") {
+        marginRight = 6.px
+    }
+
+    rule(".markdown-content") {
+        maxWidth = CssStyles.postMaxWidth
+        padding = Padding(CssStyles.postPadding)
+    }
+
+    blockquote {
+        backgroundColor = CssStyles.blockBackground
+        margin = Margin(top = CssStyles.blockquoteTop, 0.px, 0.px, 0.px)
+        padding = CssStyles.blockPadding
+        borderRadius = CssStyles.blockRadius
+        display = Display.flex
+
+        before {
+            display = Display.block
+            content = QuotedString("\uD83E\uDD14")
+
+        }
+
+        children(p.tagName) {
+            margin = Margin(0.px, 0.px, 0.px, left = 18.px)
+            display = Display.block
+        }
+    }
+
+    rule(".flex-layout") {
+        display = Display.flex
+        height = 100.pct
+        width = 100.pct
+    }
+
+    rule(".flex-nav") {
+        height = 100.pct
+        minWidth = 300.px
+        borderRight = Border(width = 1.px, style = BorderStyle.solid, color = CssStyles.borderColor)
+        overflow = Overflow.auto
+        backgroundColor = CssStyles.navBackground
+    }
+
+    rule(".topic-nav") {
+        paddingTop = CssStyles.navTop
+    }
+
+    rule(".nav-item") {
+        display = Display.block
+        width = CssStyles.navItemWidth
+        padding = CssStyles.navPadding
+        cursor = Cursor.pointer
+        fontSize = CssStyles.navTextSize
+        color = CssStyles.defaultTextColor
+        borderBottom = Border.none
+        lineHeight = CssStyles.navLineHeight.lh
+
+        hover {
+            backgroundColor = CssStyles.navHoverBackground
+        }
+
+        after {
+            marginLeft = 0.px
+            content = QuotedString("")
+        }
+    }
+
+    rule(".nav-item-select") {
+        backgroundColor = CssStyles.navSelectBackground
+        color = CssStyles.strongTextColor
+
+        hover {
+            backgroundColor = CssStyles.navSelectBackground
+        }
+    }
+
+    rule(".flex-content") {
+        height = 100.pct
+        overflow = Overflow.auto
+        flexGrow = 1
+    }
+
+    img {
+        maxWidth = 100.pct
+    }
+}
+
