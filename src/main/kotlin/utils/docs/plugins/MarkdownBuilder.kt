@@ -58,6 +58,7 @@ private val visitor = object : HtmlGenerator.TagRenderer {
         title(file.name.removePrefix(".md"))
         link(rel = LinkRel.stylesheet, href = StylePath, type = LinkType.textCss)
         link(rel = LinkRel.stylesheet, href = ScrollbarStylePath, type = LinkType.textCss)
+        link(rel = LinkRel.stylesheet, href = CheckListStylePath, type = LinkType.textCss)
         link(rel = LinkRel.stylesheet, href = HlStylePath, type = LinkType.textCss)
     }
 }

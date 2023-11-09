@@ -1,0 +1,22 @@
+
+input[type="checkbox" i] {
+    appearance: auto;
+    box-sizing: border-box;
+}
+
+input:disabled {
+    cursor: default;
+    background-color: rgba(239, 239, 239, 0.3);
+    color: rgb(84, 84, 84);
+    border-color: rgba(118, 118, 118, 0.3);
+}
+
+.task-list-item-checkbox {
+    margin: 0 10px 3px -20px;
+    vertical-align: middle;
+    color: #686868 !important;
+}
+
+.task-list-item {
+    list-style-type: none;
+}
