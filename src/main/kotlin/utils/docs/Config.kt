@@ -15,5 +15,6 @@ data class Config(
     val root: String = "",
     val static: String = "static",
     val flavour: String = "GitHub",
+    val title: String = "Docs",
     val docs: List<String> = emptyList()
 )

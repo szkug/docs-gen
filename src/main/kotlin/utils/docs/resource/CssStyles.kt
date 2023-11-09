@@ -15,6 +15,7 @@ object CssStyles {
     val background = Color("#19191c")
     val defaultTextColor = Color("#ffffffcc")
     val strongTextColor = Color.white
+    val timeTextColor = Color("#ffffffb2")
     val borderColor = Color("#ffffff33")
     val linkColor = Color("#4c8ef9")
     val linkHoverColor = Color("#80b0ff")
@@ -33,8 +34,9 @@ object CssStyles {
 
     val postMaxWidth = 900.px
     val postPadding = 32.px
+    val spaceHeight = 46.px
 
-    val titleTop = 48.px
+    val titleTop = 36.px
     val lineTop = 20.px
     val listTop = 10.px
     val blockquoteTop = 32.px
@@ -47,6 +49,7 @@ object CssStyles {
     val textSize = 16.px
     val codeTextSize = 15.px
     val navTextSize = 13.px
+    val timeTextSize = 13.px
     val lineHeightRadio = 1.8
 
     val navPadding = Padding(vertical = 10.px, horizontal = 20.px)

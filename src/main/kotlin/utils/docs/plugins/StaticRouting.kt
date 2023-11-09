@@ -62,6 +62,7 @@ private fun CssBuilder.stylesCss() {
     }
     p {
         marginTop = CssStyles.lineTop
+        marginBottom = 0.px
         fontSize = CssStyles.textSize
         lineHeight = (CssStyles.textSize * CssStyles.lineHeightRadio).lh
     }
@@ -74,6 +75,16 @@ private fun CssBuilder.stylesCss() {
         marginTop = CssStyles.titleTop
         color = CssStyles.strongTextColor
     }
+    rule(".space") {
+        height = CssStyles.spaceHeight
+    }
+    rule(".modify-time") {
+        fontSize = CssStyles.timeTextSize
+        color = CssStyles.timeTextColor
+        position = Position.relative
+        bottom = (-20).px
+    }
+
     code {
         backgroundColor = CssStyles.blockBackground
         padding = CssStyles.codeLinePadding
@@ -102,6 +113,8 @@ private fun CssBuilder.stylesCss() {
     rule(".markdown-content") {
         maxWidth = CssStyles.postMaxWidth
         padding = Padding(CssStyles.postPadding)
+        margin = Margin(LinearDimension.auto)
+        height = 100.pct
     }
 
     blockquote {
@@ -113,12 +126,14 @@ private fun CssBuilder.stylesCss() {
 
         before {
             display = Display.block
-            content = QuotedString("\uD83E\uDD14")
-
+            color = Color.white
+            put("content", "url(blockquote.svg)")
+            position = Position.relative
+            top = 3.px
         }
 
         children(p.tagName) {
-            margin = Margin(0.px, 0.px, 0.px, left = 18.px)
+            margin = Margin(0.px, 0.px, 0.px, left = 12.px)
             display = Display.block
         }
     }
@@ -138,7 +153,12 @@ private fun CssBuilder.stylesCss() {
     }
 
     rule(".topic-nav") {
-        paddingTop = CssStyles.navTop
+        // paddingTop = CssStyles.navTop
+    }
+
+    rule(".nav-title") {
+        textAlign = TextAlign.center
+        marginBottom = CssStyles.navTop
     }
 
     rule(".nav-item") {
@@ -173,13 +193,13 @@ private fun CssBuilder.stylesCss() {
     }
 
     rule(".flex-content") {
-        height = 100.pct
         overflow = Overflow.auto
         flexGrow = 1
     }
 
     img {
         maxWidth = 100.pct
+        marginTop = CssStyles.lineTop
     }
 
     table {

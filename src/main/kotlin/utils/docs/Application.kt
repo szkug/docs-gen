@@ -32,11 +32,11 @@ fun main(args: Array<String>) {
     MarkdownBuildConfig.init(config.flavour)
 
     embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = {
-        module(root, config.docs, config.static)
+        module(root, config.docs, config.static, config.title)
     }).start(wait = true)
 }
 
-fun Application.module(root: String, docs: List<String>, static: String) {
+fun Application.module(root: String, docs: List<String>, static: String, title: String) {
     configureStaticFileRoute(root, static)
-    configureMarkdownPages(root, docs)
+    configureMarkdownPages(root, docs, title)
 }

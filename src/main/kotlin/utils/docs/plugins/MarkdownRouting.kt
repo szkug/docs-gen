@@ -9,7 +9,7 @@ import utils.docs.markdown.buildHeader
 import utils.docs.markdown.buildNav
 import java.io.File
 
-fun Application.configureMarkdownPages(root: String, docs: List<String>) {
+fun Application.configureMarkdownPages(root: String, docs: List<String>, title: String) {
 
     val files = docs.map { File(root, it) }
 
@@ -35,7 +35,7 @@ fun Application.configureMarkdownPages(root: String, docs: List<String>) {
 
                     body {
                         div(classes = "flex-layout") {
-                            div(classes = "flex-nav") { buildNav(file, files) }
+                            div(classes = "flex-nav") { buildNav(file, files, title) }
                             div(classes = "flex-content") { buildContent(file) }
                         }
                     }
