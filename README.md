@@ -1,7 +1,7 @@
 # docs-gen
  A markdown docs preview in browser using ktor server
 
-## How
+## Download
 
 You can download the latest version of the `docs-gen` command line tool in [release](https://github.com/szkug/docs-gen/releases)
 
