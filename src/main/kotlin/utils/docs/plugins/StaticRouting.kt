@@ -197,6 +197,7 @@ private fun CssBuilder.stylesCss() {
         backgroundColor = CssStyles.tableHeaderColor
         fontSize = CssStyles.textSize
         lineHeight = (CssStyles.textSize * CssStyles.lineHeightRadio).lh
+        fontWeight = FontWeight.normal
     }
 }
 

@@ -7,7 +7,9 @@ Add `src/test/resources images` as program arguments in **Run Configuration**.
 
 ## TODO
 
-- [x] Table CSS Style
-- [ ] TODO CSS Style
+- [x] Table style
+- [ ] TODO style
 - [ ] Use configuration file
-- [ ] Support choose Markdown flavour
+- [ ] Markdown flavour choose
+- [ ] Sorted docs
+- [ ] Scrollbar style
