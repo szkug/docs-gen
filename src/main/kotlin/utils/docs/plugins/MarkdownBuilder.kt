@@ -3,13 +3,15 @@ package utils.docs.plugins
 import kotlinx.html.*
 import org.intellij.markdown.ast.ASTNode
 import org.intellij.markdown.flavours.commonmark.CommonMarkFlavourDescriptor
+import org.intellij.markdown.flavours.gfm.GFMFlavourDescriptor
 import org.intellij.markdown.html.HtmlGenerator
 import org.intellij.markdown.parser.MarkdownParser
+import org.slf4j.LoggerFactory
 import java.io.File
 import java.lang.StringBuilder
 
 
-private val flavour = CommonMarkFlavourDescriptor()
+private val flavour = GFMFlavourDescriptor()
 private val parser = MarkdownParser(flavour)
 
 private val namePlusTags = arrayOf("h1", "h2", "h3", "h4", "h5", "h6")
@@ -17,6 +19,10 @@ private val namePlusTags = arrayOf("h1", "h2", "h3", "h4", "h5", "h6")
 private val visitor = object : HtmlGenerator.TagRenderer {
 
     private var curTitleTag = false
+
+    private val logger = LoggerFactory.getLogger("markdown.html")
+
+    private fun CharSequence.withLog(tag: String) = apply { logger.info("$tag: $this") }
 
     override fun openTag(node: ASTNode, tagName: CharSequence, vararg attributes: CharSequence?, autoClose: Boolean): CharSequence {
         return buildString {
@@ -35,16 +41,16 @@ private val visitor = object : HtmlGenerator.TagRenderer {
             } else {
                 append(">")
             }
-        }
+        }.withLog("openTag")
     }
 
-    override fun closeTag(tagName: CharSequence): CharSequence = "</$tagName>"
+    override fun closeTag(tagName: CharSequence): CharSequence = "</$tagName>".withLog("closeTag")
 
     override fun printHtml(html: CharSequence): CharSequence = if (curTitleTag) {
         """"$html">$html"""
     } else {
         html
-    }
+    }.withLog("printHtml")
 }
 
  fun HTML.buildHeader(file: File) {

@@ -15,8 +15,12 @@ object CssStyles {
     val defaultTextColor = Color("#ffffffcc")
     val strongTextColor = Color.white
     val borderColor = Color("#ffffff33")
-    val linkColor = Color("#9E9Eff")
+    val linkColor = Color("#4c8ef9")
+    val linkHoverColor = Color("#80b0ff")
     val blockBackground = Color("#ffffff0d")
+    val tableBorderColor = Color("#474749")
+    val tableHeaderColor = Color("#252528")
+    val tablePadding = 16.px
 
     val navBackground = Color("#19191c")
     val navHoverBackground = Color("#ffffff0d")

@@ -31,7 +31,7 @@ fun Application.configureStaticFileRoute(root: File, dir: String) {
 private fun CssBuilder.stylesCss() {
     fontFace {
         fontFamily = CssStyles.fontName
-        src = """url("JetBrainsMono-Thin.woff2") format("woff")"""
+        src = """url("JetBrainsMono[wght].ttf") format("ttf")"""
     }
     rule("*") {
         fontFamily = CssStyles.fontFamily
@@ -49,18 +49,13 @@ private fun CssBuilder.stylesCss() {
     }
 
     a {
-        borderBottom = Border(width = 1.px, style = BorderStyle.solid, color = CssStyles.borderColor)
         cursor = Cursor.pointer
         color = CssStyles.linkColor
         textDecoration = TextDecoration.none
 
         hover {
             borderBottomColor = Color.unset
-        }
-
-        after {
-            marginLeft = 4.px
-            content = QuotedString("\\2197")
+            color = CssStyles.linkHoverColor
         }
     }
     p {
@@ -156,6 +151,7 @@ private fun CssBuilder.stylesCss() {
 
         hover {
             backgroundColor = CssStyles.navHoverBackground
+            color = CssStyles.defaultTextColor
         }
 
         after {
@@ -170,6 +166,7 @@ private fun CssBuilder.stylesCss() {
 
         hover {
             backgroundColor = CssStyles.navSelectBackground
+            color = CssStyles.strongTextColor
         }
     }
 
@@ -181,6 +178,25 @@ private fun CssBuilder.stylesCss() {
 
     img {
         maxWidth = 100.pct
+    }
+
+    table {
+        borderCollapse = BorderCollapse.collapse
+    }
+
+    td {
+        border = Border(1.px, BorderStyle.solid, CssStyles.tableBorderColor)
+        padding = Padding(CssStyles.tablePadding)
+        fontSize = CssStyles.textSize
+        lineHeight = (CssStyles.textSize * CssStyles.lineHeightRadio).lh
+    }
+
+    th {
+        border = Border(1.px, BorderStyle.solid, CssStyles.tableBorderColor)
+        padding = Padding(CssStyles.tablePadding)
+        backgroundColor = CssStyles.tableHeaderColor
+        fontSize = CssStyles.textSize
+        lineHeight = (CssStyles.textSize * CssStyles.lineHeightRadio).lh
     }
 }
 
