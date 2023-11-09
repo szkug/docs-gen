@@ -22,7 +22,9 @@ object MarkdownBuildConfig {
 
         private val logger = LoggerFactory.getLogger("markdown.html")
 
-        private fun CharSequence.withLog(tag: String) = apply { logger.info("$tag: $this") }
+        private fun CharSequence.withLog(tag: String) = apply {
+            // logger.debug("$tag: $this")
+        }
 
         override fun openTag(
             node: ASTNode,

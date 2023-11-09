@@ -1,1 +1,1 @@
-rootProject.name = "utils.docs.docs-gen"
+rootProject.name = "docs-gen"
