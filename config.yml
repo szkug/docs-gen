@@ -1,0 +1,8 @@
+root: src/test/resources
+static: images
+flavour: GitHub
+docs:
+  - TEST.md
+  - README.md
+  - ArchitectureLearningJourney.md
+  - ModularizationLearningJourney.md

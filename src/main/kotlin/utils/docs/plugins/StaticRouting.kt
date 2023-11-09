@@ -8,13 +8,15 @@ import io.ktor.server.routing.*
 import kotlinx.css.*
 import kotlinx.css.properties.TextDecoration
 import kotlinx.css.properties.lh
+import utils.docs.resource.CssStyles
+import utils.docs.resource.StylePath
 import java.io.File
 
 suspend inline fun ApplicationCall.respondCss(builder: CssBuilder.() -> Unit) {
     this.respondText(CssBuilder().apply(builder).toString(), ContentType.Text.CSS)
 }
 
-fun Application.configureStaticFileRoute(root: File, dir: String) {
+fun Application.configureStaticFileRoute(root: String, dir: String) {
     routing {
 
         staticResources("", "")

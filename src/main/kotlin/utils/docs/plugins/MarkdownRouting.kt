@@ -4,18 +4,14 @@ import io.ktor.server.application.*
 import io.ktor.server.html.*
 import io.ktor.server.routing.*
 import kotlinx.html.*
-import org.intellij.markdown.ast.ASTNode
-import org.intellij.markdown.flavours.commonmark.CommonMarkFlavourDescriptor
-import org.intellij.markdown.html.HtmlGenerator
-import org.intellij.markdown.parser.MarkdownParser
+import utils.docs.markdown.buildContent
+import utils.docs.markdown.buildHeader
+import utils.docs.markdown.buildNav
 import java.io.File
-import java.nio.file.Files
 
-fun Application.configureMarkdownPages(root: File) {
+fun Application.configureMarkdownPages(root: String, docs: List<String>) {
 
-    val files = root.listFiles { file: File ->
-        file.name.endsWith(".md")
-    }!!
+    val files = docs.map { File(root, it) }
 
     routing {
 

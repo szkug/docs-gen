@@ -8,8 +8,8 @@ Add `src/test/resources images` as program arguments in **Run Configuration**.
 ## TODO
 
 - [x] Table style
-- [ ] TODO style
-- [ ] Use configuration file
-- [ ] Markdown flavour choose
-- [ ] Sorted docs
+- [x] TODO style
+- [x] Use configuration file
+- [x] Markdown flavour choose
+- [x] Sorted docs
 - [x] Scrollbar style

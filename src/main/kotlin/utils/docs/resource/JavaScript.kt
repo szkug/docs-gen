@@ -1,3 +1,3 @@
-package utils.docs.plugins
+package utils.docs.resource
 
 const val HlJsRef = "/prism.js"

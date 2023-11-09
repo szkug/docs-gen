@@ -1,9 +1,8 @@
-package utils.docs.plugins
+package utils.docs.resource
 
 import kotlinx.css.Color
 import kotlinx.css.Margin
 import kotlinx.css.Padding
-import kotlinx.css.properties.LinearGradientBuilder
 import kotlinx.css.px
 
 const val StylePath = "/styles.css"

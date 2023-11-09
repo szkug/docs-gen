@@ -6,6 +6,7 @@ val logback_version: String by project
 plugins {
     kotlin("jvm") version "1.9.10"
     id("io.ktor.plugin") version "2.3.5"
+    kotlin("plugin.serialization") version "1.9.10"
 }
 
 group = "utils.docs"
@@ -30,4 +31,5 @@ dependencies {
     implementation("io.ktor:ktor-server-netty-jvm")
     implementation("org.jetbrains:markdown:0.5.0")
     implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("com.charleskorn.kaml:kaml:0.55.0")
 }
