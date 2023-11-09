@@ -7,6 +7,7 @@ import kotlinx.css.properties.LinearGradientBuilder
 import kotlinx.css.px
 
 const val StylePath = "/styles.css"
+const val ScrollbarStylePath = "/scrollbar.css"
 const val HlStylePath = "/prism.css"
 
 object CssStyles {

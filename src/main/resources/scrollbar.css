@@ -1,0 +1,39 @@
+
+html::-webkit-scrollbar {
+    width: 6px;
+}
+
+html::-webkit-scrollbar-track {
+    background: #ffffff00;
+    border-radius: 6px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: #b9b9b9;
+    border-radius: 6px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+
+
+
+
+div::-webkit-scrollbar {
+    width: 5px;
+}
+
+div::-webkit-scrollbar-track {
+    background: #ffffff00;
+    border-radius: 6px;
+}
+
+div::-webkit-scrollbar-thumb {
+    background: #b9b9b9;
+    border-radius: 6px;
+}
+
+div::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}

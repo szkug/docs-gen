@@ -12,4 +12,4 @@ Add `src/test/resources images` as program arguments in **Run Configuration**.
 - [ ] Use configuration file
 - [ ] Markdown flavour choose
 - [ ] Sorted docs
-- [ ] Scrollbar style
+- [x] Scrollbar style
