@@ -17,10 +17,10 @@ The yaml configuration file supports the following arguments.
 
 | key | type | description |
 | --- | ---- | ----------- |
-| root | String | Base working path, the relative path to this configuration file. |
-| static | String | Static resource directory relative the root path. |
-| flavour | String | Markdown flavour, the value is **GitHub** or **JetBrains**. |
-| docs | List\<String> | Markdown files order. Relative the root path. |
+| root | `String` | Base working path, the relative path to this configuration file. |
+| static | `String` | Static resource directory relative the root path. |
+| flavour | `String` | Markdown flavour, the value is **GitHub** or **JetBrains**. |
+| docs | `List<String>` | Markdown files order. Relative the root path. |
 
 If you have a `workspace` dir like the following:
 
