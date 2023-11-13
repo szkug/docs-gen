@@ -53,7 +53,7 @@ fun DIV.buildContent(file: File) = with(MarkdownBuildConfig) {
     val content = file.readText()
     val tree = parser.buildMarkdownTreeFromString(content)
     val generator = HtmlGenerator(content, tree, flavour)
-    val html = generator.generateHtml(visitor)
+    val html = generator.generateHtml()
 
     div(classes = "markdown-content") {
 
