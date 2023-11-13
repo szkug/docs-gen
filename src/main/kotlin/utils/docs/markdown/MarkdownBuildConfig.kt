@@ -7,6 +7,8 @@ import org.intellij.markdown.flavours.space.SFMFlavourDescriptor
 import org.intellij.markdown.html.HtmlGenerator
 import org.intellij.markdown.parser.MarkdownParser
 import org.slf4j.LoggerFactory
+import java.util.Deque
+import java.util.LinkedList
 
 object MarkdownBuildConfig {
 
@@ -16,14 +18,19 @@ object MarkdownBuildConfig {
 
     val parser by lazy { MarkdownParser(flavour) }
 
+    // pair a tag info combine
+    // whether is title to consume this title
+    data class TitleTag(val isTitle: Boolean, var consume: Boolean = false)
+
     val visitor = object : HtmlGenerator.TagRenderer {
 
-        private var curTitleTag = false
+        private var tagTitleStack: Deque<TitleTag> = LinkedList()
 
         private val logger = LoggerFactory.getLogger("markdown.html")
 
         private fun CharSequence.withLog(tag: String) = apply {
-            // logger.debug("$tag: $this")
+
+            logger.debug("$tag ${tagTitleStack.firstOrNull()}: $this")
         }
 
         override fun openTag(
@@ -32,8 +39,8 @@ object MarkdownBuildConfig {
             vararg attributes: CharSequence?,
             autoClose: Boolean
         ): CharSequence {
-            return buildString {
-                curTitleTag = false
+            var curTitleTag = false
+            val str = buildString {
                 append("<$tagName")
                 for (attribute in attributes) {
                     if (attribute != null) {
@@ -48,16 +55,26 @@ object MarkdownBuildConfig {
                 } else {
                     append(">")
                 }
-            }.withLog("openTag")
+            }
+
+            // push whether this tag is title when not close this tag
+            if (!autoClose) tagTitleStack.push(TitleTag(curTitleTag))
+
+            return str.withLog("openTag")
         }
 
-        override fun closeTag(tagName: CharSequence): CharSequence = "</$tagName>".withLog("closeTag")
+        override fun closeTag(tagName: CharSequence): CharSequence = "</$tagName>".withLog("closeTag").also {
+            tagTitleStack.pop()
+        }
 
-        override fun printHtml(html: CharSequence): CharSequence = if (curTitleTag) {
+        /**
+         * This method maybe called multiple times within a tag.
+         */
+        override fun printHtml(html: CharSequence): CharSequence = if (tagTitleStack.first.let { it.isTitle && !it.consume }) {
             """"$html">$html"""
         } else {
             html
-        }.withLog("printHtml")
+        }.withLog("printHtml").also { tagTitleStack.first.consume = true }
     }
 
     fun init(flavour: String) {
